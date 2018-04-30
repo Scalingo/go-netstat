@@ -10,14 +10,14 @@ import (
 type NetworkStats []NetworkStat
 
 type networkInfo struct {
-	Bytes      int64 `json:"bytes"`
-	Packets    int64 `json:"packets"`
-	Drop       int64 `json:"drop"`
-	Errs       int64 `json:"errs"`
-	Fifo       int64 `json:"fifo"`
-	Frame      int64 `json:"frame"`
-	Compressed int64 `json:"compressed"`
-	Multicast  int64 `json:"multicast"`
+	Bytes      uint64 `json:"bytes"`
+	Packets    uint64 `json:"packets"`
+	Drop       uint64 `json:"drop"`
+	Errs       uint64 `json:"errs"`
+	Fifo       uint64 `json:"fifo"`
+	Frame      uint64 `json:"frame"`
+	Compressed uint64 `json:"compressed"`
+	Multicast  uint64 `json:"multicast"`
 }
 
 type NetworkStat struct {
@@ -76,8 +76,8 @@ func toNetworkInfo(fields []string) networkInfo {
 	}
 }
 
-func toInt(str string) int64 {
-	res, err := strconv.ParseInt(str, 10, 64)
+func toInt(str string) uint64 {
+	res, err := strconv.ParseUint(str, 10, 64)
 	if err != nil {
 		panic(err)
 	}
